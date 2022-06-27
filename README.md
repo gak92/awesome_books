@@ -61,14 +61,14 @@ Deploy onto the web using GitHub Pages
 
 ## Authors
 
-👤 **Asim Mehmood Khan**
+👤 **Ghazanfar Ali**
 
 - GitHub: Ghazanfar Ali [@gak92](https://github.com/gak92)
 - LinkedIn: Ghazanfar Ali (https://www.linkedin.com/in/ghazanfar-ali-9a4998a/)
 
-👤 **Ghazanfar Ali**
+👤 **Asim Khan**
 
-- GitHub: Asim Khan [@AsimKhan2022](https://github.com/AsimKhan2022)
+- GitHub: Asim Khan [@AsimKhan2019](https://github.com/AsimKhan2019/)
 
 
 ## 🤝 Contributing
