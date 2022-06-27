@@ -1,29 +1,41 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
+<<<<<<< HEAD
 # Javascript Project Awesome Books
 
 > Using Javascript to create a simple Awesome Books project. Populating the books list and then removing one book from the list. Using objects to store the data onto the local storage.
+=======
+# Awesome Books
+
+> "Awesome books" is a simple website that displays a list of books and allows you to add and remove books from that list.
+>>>>>>> 9b507ed596fb0a2c4c58379a82e2ad5c7c7e12f2
 
 
 ## Built With
 
+<<<<<<< HEAD
 - Javascript
 - HTML, CSS
+=======
+- HTML/CSS
+- Javascript
+- Linters
+- Visual Studio
+- Git/GitHub
+>>>>>>> 9b507ed596fb0a2c4c58379a82e2ad5c7c7e12f2
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://gak92.github.io/awesome_books/)
 
 
 ## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
 
 
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+<<<<<<< HEAD
 Create a repo then clone it on to Visual Studio Code
 
 ### Setup
@@ -42,21 +54,22 @@ Apply linters to run the tests of the project
 
 ### Deployment
 Deploy onto the web using GitHub Pages
+=======
+- Web browser
+>>>>>>> 9b507ed596fb0a2c4c58379a82e2ad5c7c7e12f2
 
 
 ## Authors
 
 👤 **Asim Mehmood Khan**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: Ghazanfar Ali [@gak92](https://github.com/gak92)
+- LinkedIn: Ghazanfar Ali (https://www.linkedin.com/in/ghazanfar-ali-9a4998a/)
 
 👤 **Ghazanfar Ali**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: Asim Khan [@AsimKhan2022](https://github.com/AsimKhan2022)
+
 
 ## 🤝 Contributing
 
