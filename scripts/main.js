@@ -1,21 +1,18 @@
 const btnSubmit = document.querySelector('.submit');
 
-class Book {
-  constructor(title, author, id) {
-    this.title = title;
-    this.author = author;
-    this.id = id;
-  }
-}
-
+let bookObj;
 let bookid = 0;
+let serializedBookObj;
+let deserializedBookObj;
 
 function appendDiv(book) {
+  deserializedBookObj = JSON.parse(localStorage.getItem("bookData"));
+
   let titleElement = ' ';
   titleElement += `
-            <div class="book" data-id="${book.id}">
-              <h2 class="title">${book.title}
-                  <span class="author">${book.author}</span>
+            <div class="book" data-id="${deserializedBookObj.bookid}">
+              <h2 class="title">${deserializedBookObj.title}
+                  <span class="author">${deserializedBookObj.author}</span>
                </h2>
               <button class="btn btn-remove">Remove</button>
               <hr/>
@@ -27,15 +24,23 @@ function appendDiv(book) {
 }
 
 btnSubmit.addEventListener('click', () => {
-  const title = document.querySelector('.form-title').value;
-  const author = document.querySelector('.form-author').value;
-
+  let title = document.querySelector('.form-title').value;
+  let author = document.querySelector('.form-author').value;
   bookid += 1;
-
-  const book = new Book(title, author, bookid);
-
-  appendDiv(book);
+  addToList(title,author,bookid);
 });
+
+function addToList(author, title, bookid){ 
+  bookObj = {
+    title : title,
+    author: author,
+    bookid: bookid
+  }
+
+  serializedBookObj = JSON.stringify(bookObj);
+  localStorage.setItem("bookData", serializedBookObj);
+  appendDiv(serializedBookObj);
+}
 
 const bookDisplay = document.querySelector('.book-display');
 
@@ -43,8 +48,12 @@ bookDisplay.addEventListener(
   'click',
   (e) => {
     if (e.target.tagName === 'BUTTON') {
-      const currentDiv = e.target.parentElement;
-      currentDiv.parentElement.removeChild(currentDiv);
+      removeFromList(e);
     }
   }, true,
 );
+
+function removeFromList(e) { 
+  const currentDiv = e.target.parentElement;
+  currentDiv.parentElement.removeChild(currentDiv);
+}

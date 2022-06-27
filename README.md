@@ -1,15 +1,14 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Javascript Project Awesome Books
 
-> Description the project.
+> Using Javascript to create a simple Awesome Books project. Populating the books list and then removing one book from the list. Using objects to store the data onto the local storage.
 
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Javascript
+- HTML, CSS
 
 ## Live Demo (if available)
 
@@ -25,28 +24,35 @@
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+Create a repo then clone it on to Visual Studio Code
 
 ### Setup
+Create index.html, style.css, and script.js file for the project. 
+Add linters.yml to run the scripts
+Create a good Read Me File. 
 
 ### Install
+Visual Studio Code 
 
 ### Usage
+Develop Javascript Project using Visual Studio Code
 
 ### Run tests
+Apply linters to run the tests of the project
 
 ### Deployment
-
+Deploy onto the web using GitHub Pages
 
 
 ## Authors
 
-👤 **Author1**
+👤 **Asim Mehmood Khan**
 
 - GitHub: [@githubhandle](https://github.com/githubhandle)
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
-👤 **Author2**
+👤 **Ghazanfar Ali**
 
 - GitHub: [@githubhandle](https://github.com/githubhandle)
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
