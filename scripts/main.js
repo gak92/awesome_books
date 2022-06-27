@@ -46,5 +46,5 @@ bookDisplay.addEventListener(
       const currentDiv = e.target.parentElement;
       currentDiv.parentElement.removeChild(currentDiv);
     }
-  }, true
+  }, true,
 );
