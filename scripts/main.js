@@ -1,6 +1,4 @@
-const form = document.querySelector('.form');
 const btnSubmit = document.querySelector('.submit');
-const btnRemove = document.querySelector('.btn-remove');
 
 class Book {
   constructor(title, author, id) {
@@ -12,11 +10,26 @@ class Book {
 
 let bookid = 0;
 
+function appendDiv(book) {
+  let titleElement = ' ';
+  titleElement += `
+            <div class="book" data-id="${book.id}">
+              <h2 class="title">${book.title}
+                  <span class="author">${book.author}</span>
+               </h2>
+              <button class="btn btn-remove">Remove</button>
+              <hr/>
+            </div>
+          `;
+
+  const sectionBookDisplay = document.querySelector('.book-display');
+  sectionBookDisplay.innerHTML += titleElement;
+}
+
 btnSubmit.addEventListener('click', () => {
   const title = document.querySelector('.form-title').value;
   const author = document.querySelector('.form-author').value;
 
-  console.log(title, author);
   bookid += 1;
 
   const book = new Book(title, author, bookid);
@@ -36,19 +49,3 @@ bookDisplay.addEventListener(
   },
   true
 );
-
-function appendDiv(book) {
-  let titleElement = ' ';
-  titleElement += `
-          <div class="book" data-id="${book.id}">
-            <h2 class="title">${book.title}
-                <span class="author">${book.author}</span>
-             </h2>
-            <button class="btn btn-remove">Remove</button>
-            <hr/>
-          </div>
-        `;
-
-  const sectionBookDisplay = document.querySelector('.book-display');
-  sectionBookDisplay.innerHTML += titleElement;
-}
