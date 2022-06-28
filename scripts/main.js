@@ -10,7 +10,6 @@ let serializedBookObj;
 let deserializedBookObj;
 
 let bookListObj = [];
-// let serializedBookList;
 let deserializedBookList;
 
 function saveData(dataObj) {
@@ -22,43 +21,24 @@ function getData(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-function appendDiv() {
-  deserializedBookObj = JSON.parse(localStorage.getItem('bookData'));
+function getBookList() {
+  let books = ' ';
+  deserializedBookList = getData('bookList');
 
-  let bookElement = ' ';
-  bookElement += `
-            <div class="book" data-id="${deserializedBookObj.bookid}">
-              <h2 class="title">${deserializedBookObj.title}
-                  <span class="author">${deserializedBookObj.author}</span>
-               </h2>
+  deserializedBookList.forEach((value) => {
+    books += `
+            <div class="book" data-id="${value.bookid}">
+              <h2 class="title">${value.title}
+                <span class="author">${value.author}</span>
+              </h2>
               <button class="btn btn-remove" type="button">Remove</button>
               <hr/>
             </div>
-          `;
+              `;
+  });
 
-  const sectionBookDisplay = document.querySelector('.book-display');
-  sectionBookDisplay.innerHTML += bookElement;
-}
-
-function getBookList() {
-  let books = ' ';
-  deserializedBookList = JSON.parse(localStorage.getItem('bookList'));
-
-  const valuesArray = Object.values(deserializedBookList);
-
-  valuesArray.forEach(value) {
-    books += `
-          <div class="book" data-id="${value.bookid}">
-            <h2 class="title">${value.title}
-              <span class="author">${value.author}</span>
-            </h2>
-            <button class="btn btn-remove" type="button">Remove</button>
-            <hr/>
-          </div>
-            `;
-  }
   const booklist = document.querySelector('.book-display');
-  booklist.innerHTML += books;
+  booklist.innerHTML = books;
 }
 
 function addToList(title, author) {
@@ -74,8 +54,6 @@ function addToList(title, author) {
 
   serializedBookObj = JSON.stringify(bookObj);
   saveData(bookListObj);
-
-  appendDiv(serializedBookObj);
   getBookList();
 }
 
@@ -83,10 +61,10 @@ function removeFromList(e) {
   const currentDiv = e.target.parentElement;
   currentDiv.parentElement.removeChild(currentDiv);
 
-  const bookId = currentDiv.dataset.id;
-
+  const bookId = parseInt(currentDiv.dataset.id);
   const bookList = getData('bookList');
   const temp = bookList.filter((item) => item.bookid !== bookId);
+
   saveData(temp);
   getBookList();
 }
