@@ -10,20 +10,20 @@ let serializedBookObj;
 let deserializedBookObj;
 
 let bookListObj = [];
-let serializedBookList;
+// let serializedBookList;
 let deserializedBookList;
 
 function saveData(dataObj) {
-    const dataString = JSON.stringify(dataObj);
-    localStorage.setItem('bookList', dataString);
+  const dataString = JSON.stringify(dataObj);
+  localStorage.setItem('bookList', dataString);
 }
-  
+
 function getData(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-function appendDiv(book) {
-  deserializedBookObj = JSON.parse(localStorage.getItem("bookData"));
+function appendDiv() {
+  deserializedBookObj = JSON.parse(localStorage.getItem('bookData'));
 
   let bookElement = ' ';
   bookElement += `
@@ -40,35 +40,66 @@ function appendDiv(book) {
   sectionBookDisplay.innerHTML += bookElement;
 }
 
-btnSubmit.addEventListener('click', () => {
-  title = document.querySelector('.form-title').value;
-  author = document.querySelector('.form-author').value;
-  addToList(title,author);
-});
+function addToList(title, author) {
+  bookListObj = getData('bookList');
 
-function addToList(title, author){ 
-  
-  bookListObj = getData("bookList");
-  
   let lastObject = bookListObj[bookListObj.length - 1];
-  
+
   bookid = lastObject.bookid + 1;
-  
 
   bookObj = {
-    title : title,
+    title: title,
     author: author,
-    bookid: bookid
-  }
-  
+    bookid: bookid,
+  };
+
   bookListObj.push(bookObj);
-  
+
   serializedBookObj = JSON.stringify(bookObj);
   saveData(bookListObj);
-  
+
   appendDiv(serializedBookObj);
   getBookList();
 }
+
+function removeFromList(e) {
+  const currentDiv = e.target.parentElement;
+  currentDiv.parentElement.removeChild(currentDiv);
+
+  const bookId = currentDiv.dataset.id;
+
+  let bookList = getData('bookList');
+  let temp = bookList.filter((item) => item.bookid != bookId);
+  saveData(temp);
+  getBookList();
+}
+
+function getBookList() {
+  let books = ' ';
+  deserializedBookList = JSON.parse(localStorage.getItem('bookList'));
+
+  let valuesArray = Object.values(deserializedBookList);
+
+  for (let value of valuesArray) {
+    books += `
+        <div class="book" data-id="${value.bookid}">
+          <h2 class="title">${value.title}
+            <span class="author">${value.author}</span>
+          </h2>
+          <button class="btn btn-remove" type="button">Remove</button>
+          <hr/>
+        </div>
+          `;
+  }
+  const booklist = document.querySelector('.book-display');
+  booklist.innerHTML += books;
+}
+
+btnSubmit.addEventListener('click', () => {
+  title = document.querySelector('.form-title').value;
+  author = document.querySelector('.form-author').value;
+  addToList(title, author);
+});
 
 const bookDisplay = document.querySelector('.book-display');
 
@@ -78,38 +109,6 @@ bookDisplay.addEventListener(
     if (e.target.tagName === 'BUTTON') {
       removeFromList(e);
     }
-  }, true,
+  },
+  true
 );
-
-function removeFromList(e) { 
-  const currentDiv = e.target.parentElement;
-  currentDiv.parentElement.removeChild(currentDiv);
-  
-  const bookId = currentDiv.dataset.id;
-  
-   let bookList = getData("bookList");
-  let temp = bookList.filter(item => item.bookid != bookId);  
-  saveData(temp);
-  getBookList();
-}
-
-function getBookList(){
-  let books = " ";
-  deserializedBookList = JSON.parse(localStorage.getItem("bookList"));
-
-  let valuesArray = Object.values(deserializedBookList);
-  
-  for (let value of valuesArray) {
-    books += `
-      <div class="book" data-id="${value.bookid}">
-        <h2 class="title">${value.title}
-          <span class="author">${value.author}</span>
-        </h2>
-        <button class="btn btn-remove" type="button">Remove</button>
-        <hr/>
-      </div>
-        `;
-  }
-  const booklist = document.querySelector('.book-display');
-  booklist.innerHTML += books;
-}
