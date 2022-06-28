@@ -56,11 +56,11 @@ class Books {
       currentDiv.parentElement.removeChild(currentDiv);
     
       const bookId = parseInt(currentDiv.dataset.id, 10);
-      const bookList = getData('bookList');
+      const bookList = this.getData('bookList');
       const temp = bookList.filter((item) => item.bookid !== bookId);
     
-      saveData(temp);
-      getBookList();
+      this.saveData(temp);
+      this.getBookList();
     }
 }
 
@@ -96,7 +96,8 @@ bookDisplay.addEventListener(
   'click',
   (e) => {
     if (e.target.tagName === 'BUTTON') {
-      removeFromList(e);
+      let removeBook = new Books();
+      removeBook.removeFromList(e);
     }
   },
   true,
