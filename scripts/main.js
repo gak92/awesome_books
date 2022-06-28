@@ -41,13 +41,13 @@ function appendDiv() {
 }
 
 function getBookList() {
-    let books = ' ';
-    deserializedBookList = JSON.parse(localStorage.getItem('bookList'));
-  
-    const valuesArray = Object.values(deserializedBookList);
-  
-    for (const value of valuesArray) {
-      books += `
+  let books = ' ';
+  deserializedBookList = JSON.parse(localStorage.getItem('bookList'));
+
+  const valuesArray = Object.values(deserializedBookList);
+
+  for (const value of valuesArray) {
+    books += `
           <div class="book" data-id="${value.bookid}">
             <h2 class="title">${value.title}
               <span class="author">${value.author}</span>
@@ -56,10 +56,10 @@ function getBookList() {
             <hr/>
           </div>
             `;
-    }
-    const booklist = document.querySelector('.book-display');
-    booklist.innerHTML += books;
   }
+  const booklist = document.querySelector('.book-display');
+  booklist.innerHTML += books;
+}
 
 function addToList(title, author) {
   bookListObj = getData('bookList');
@@ -68,11 +68,7 @@ function addToList(title, author) {
 
   bookid = lastObject.bookid + 1;
 
-  bookObj = {
-    title: title,
-    author: author,
-    bookid: bookid
-  };
+  bookObj = { title, author, bookid, };
 
   bookListObj.push(bookObj);
 
@@ -89,7 +85,7 @@ function removeFromList(e) {
 
   const bookId = currentDiv.dataset.id;
 
-  let bookList = getData('bookList');
+  const bookList = getData('bookList');
   const temp = bookList.filter((item) => item.bookid !== bookId);
   saveData(temp);
   getBookList();
@@ -110,5 +106,5 @@ bookDisplay.addEventListener(
       removeFromList(e);
     }
   },
-  true
+  true,
 );
