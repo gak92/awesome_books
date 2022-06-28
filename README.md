@@ -68,7 +68,9 @@ Deploy onto the web using GitHub Pages
 
 👤 **Asim Khan**
 
-- GitHub: Asim Khan [@AsimKhan2019](https://github.com/AsimKhan2019/)
+- GitHub: [@githubhandle](https://github.com/AsimKhan2019/)
+- Twitter: [@twitterhandle](https://twitter.com/vtechbiz)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/asim-khan-9bbb4211/)
 
 
 ## 🤝 Contributing
