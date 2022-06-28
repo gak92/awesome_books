@@ -41,14 +41,11 @@ function addToList(title, author) {
   bookListObj = getData('bookList');
 
   const lastObject = bookListObj[bookListObj.length - 1];
-
   bookid = lastObject.bookid + 1;
 
   bookObj = { title, author, bookid };
-
   bookListObj.push(bookObj);
 
-  serializedBookObj = JSON.stringify(bookObj);
   saveData(bookListObj);
   getBookList();
 }
@@ -57,7 +54,7 @@ function removeFromList(e) {
   const currentDiv = e.target.parentElement;
   currentDiv.parentElement.removeChild(currentDiv);
 
-  const bookId = parseInt(currentDiv.dataset.id);
+  const bookId = parseInt(currentDiv.dataset.id, 10);
   const bookList = getData('bookList');
   const temp = bookList.filter((item) => item.bookid !== bookId);
 
