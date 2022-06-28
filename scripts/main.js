@@ -40,8 +40,10 @@ function getBookList() {
 function addToList(title, author) {
   bookListObj = getData('bookList');
 
-  const lastObject = bookListObj[bookListObj.length - 1];
-  bookid = lastObject.bookid + 1;
+  if (bookListObj.length > 0) {
+    const lastObject = bookListObj[bookListObj.length - 1];
+    bookid = lastObject.bookid + 1;
+  }
 
   bookObj = { title, author, bookid };
   bookListObj.push(bookObj);
