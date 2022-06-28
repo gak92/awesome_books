@@ -40,17 +40,38 @@ function appendDiv() {
   sectionBookDisplay.innerHTML += bookElement;
 }
 
+function getBookList() {
+    let books = ' ';
+    deserializedBookList = JSON.parse(localStorage.getItem('bookList'));
+  
+    const valuesArray = Object.values(deserializedBookList);
+  
+    for (const value of valuesArray) {
+      books += `
+          <div class="book" data-id="${value.bookid}">
+            <h2 class="title">${value.title}
+              <span class="author">${value.author}</span>
+            </h2>
+            <button class="btn btn-remove" type="button">Remove</button>
+            <hr/>
+          </div>
+            `;
+    }
+    const booklist = document.querySelector('.book-display');
+    booklist.innerHTML += books;
+  }
+
 function addToList(title, author) {
   bookListObj = getData('bookList');
 
-  let lastObject = bookListObj[bookListObj.length - 1];
+  const lastObject = bookListObj[bookListObj.length - 1];
 
   bookid = lastObject.bookid + 1;
 
   bookObj = {
     title: title,
     author: author,
-    bookid: bookid,
+    bookid: bookid
   };
 
   bookListObj.push(bookObj);
@@ -69,30 +90,9 @@ function removeFromList(e) {
   const bookId = currentDiv.dataset.id;
 
   let bookList = getData('bookList');
-  let temp = bookList.filter((item) => item.bookid != bookId);
+  const temp = bookList.filter((item) => item.bookid !== bookId);
   saveData(temp);
   getBookList();
-}
-
-function getBookList() {
-  let books = ' ';
-  deserializedBookList = JSON.parse(localStorage.getItem('bookList'));
-
-  let valuesArray = Object.values(deserializedBookList);
-
-  for (let value of valuesArray) {
-    books += `
-        <div class="book" data-id="${value.bookid}">
-          <h2 class="title">${value.title}
-            <span class="author">${value.author}</span>
-          </h2>
-          <button class="btn btn-remove" type="button">Remove</button>
-          <hr/>
-        </div>
-          `;
-  }
-  const booklist = document.querySelector('.book-display');
-  booklist.innerHTML += books;
 }
 
 btnSubmit.addEventListener('click', () => {
