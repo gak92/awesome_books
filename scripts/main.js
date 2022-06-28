@@ -43,11 +43,18 @@ function appendDiv(book) {
 btnSubmit.addEventListener('click', () => {
   title = document.querySelector('.form-title').value;
   author = document.querySelector('.form-author').value;
-  bookid += 1;
-  addToList(title,author, bookid);
+  addToList(title,author);
 });
 
-function addToList(title, author, bookid){ 
+function addToList(title, author){ 
+  
+  bookListObj = getData("bookList");
+  
+  let lastObject = bookListObj[bookListObj.length - 1];
+  
+  bookid = lastObject.bookid + 1;
+  
+
   bookObj = {
     title : title,
     author: author,
@@ -55,16 +62,12 @@ function addToList(title, author, bookid){
   }
   
   bookListObj.push(bookObj);
-  console.log(bookListObj);
   
   serializedBookObj = JSON.stringify(bookObj);
-//   localStorage.setItem("bookData", serializedBookObj);
-
-//   serializedBookList = JSON.stringify(bookListObj);
-//   localStorage.setItem("bookList", serializedBookList);
-saveData(bookListObj);
+  saveData(bookListObj);
   
   appendDiv(serializedBookObj);
+  getBookList();
 }
 
 const bookDisplay = document.querySelector('.book-display');
@@ -82,22 +85,12 @@ function removeFromList(e) {
   const currentDiv = e.target.parentElement;
   currentDiv.parentElement.removeChild(currentDiv);
   
-  console.log(e.target.parentElement);
-//   console.log(currentDiv);
-
-//   console.log(currentDiv.dataset.id);
   const bookId = currentDiv.dataset.id;
-
-//   let bookList = JSON.parse(localStorage.getItem('bookList'));
-//   console.log('Before Removing', bookList);
-
-
-//         let temp = bookList.filter(item => item.bookid != bookId);  
-//         localStorage.setItem("bookList", JSON.stringify(temp));
-    
-//     // localStorage.setItem('bookList', JSON.stringify(bookList));
-
-//     console.log('After Removing', temp);
+  
+   let bookList = getData("bookList");
+  let temp = bookList.filter(item => item.bookid != bookId);  
+  saveData(temp);
+  getBookList();
 }
 
 function getBookList(){
