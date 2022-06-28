@@ -40,9 +40,12 @@ function getBookList() {
 function addToList(title, author) {
   bookListObj = getData('bookList');
 
-  if (bookListObj.length > 0) {
+  if (bookListObj !== null && bookListObj.length > 0) {
     const lastObject = bookListObj[bookListObj.length - 1];
     bookid = lastObject.bookid + 1;
+  } else {
+    bookid = 1;
+    bookListObj = [];
   }
 
   bookObj = { title, author, bookid };
@@ -68,6 +71,8 @@ btnSubmit.addEventListener('click', () => {
   title = document.querySelector('.form-title').value;
   author = document.querySelector('.form-author').value;
   addToList(title, author);
+  document.querySelector('.form-title').value = '';
+  document.querySelector('.form-author').value = '';
 });
 
 const bookDisplay = document.querySelector('.book-display');
@@ -81,3 +86,8 @@ bookDisplay.addEventListener(
   },
   true,
 );
+
+const key = localStorage.getItem('bookList');
+if(key){
+    getBookList();
+}
