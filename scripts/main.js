@@ -8,38 +8,70 @@ let title = ' ';
 let bookListObj = [];
 let deserializedBookList;
 
-function saveData(dataObj) {
-  const dataString = JSON.stringify(dataObj);
-  localStorage.setItem('bookList', dataString);
+// Create class
+class Books {
+    constructor(bookid, title, author) {
+        this.bookid = bookid;
+        this.title = title;
+        this.author = author;
+    }
+
+    saveData(dataObj) {
+      const dataString = JSON.stringify(dataObj);
+      localStorage.setItem('bookList', dataString);
+    }
+      
+    getData(key) {
+      return JSON.parse(localStorage.getItem(key));
+    }
+    
+    getBookList() {
+      let books = ' ';
+      deserializedBookList = this.getData('bookList');
+    
+      deserializedBookList.forEach((value) => {
+        books += `
+                <div class="book" data-id="${value.bookid}">
+                  <h2 class="title">${value.title}
+                    <span class="author">${value.author}</span>
+                  </h2>
+                  <button class="btn btn-remove" type="button">Remove</button>
+                  <hr/>
+                </div>
+                  `;
+      });
+    
+      const booklist = document.querySelector('.book-display');
+      booklist.innerHTML = books;
+    }
+
+    addToList(bookObj) {
+      bookListObj.push(bookObj);  
+      this.saveData(bookListObj);
+      this.getBookList();
+    }
+
+    removeFromList(e) {
+      const currentDiv = e.target.parentElement;
+      currentDiv.parentElement.removeChild(currentDiv);
+    
+      const bookId = parseInt(currentDiv.dataset.id, 10);
+      const bookList = getData('bookList');
+      const temp = bookList.filter((item) => item.bookid !== bookId);
+    
+      saveData(temp);
+      getBookList();
+    }
 }
 
-function getData(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
+// Submit Data Event Handler
+btnSubmit.addEventListener('click', () => {
+  title = document.querySelector('.form-title').value;
+  author = document.querySelector('.form-author').value;
 
-function getBookList() {
-  let books = ' ';
-  deserializedBookList = getData('bookList');
-
-  deserializedBookList.forEach((value) => {
-    books += `
-            <div class="book" data-id="${value.bookid}">
-              <h2 class="title">${value.title}
-                <span class="author">${value.author}</span>
-              </h2>
-              <button class="btn btn-remove" type="button">Remove</button>
-              <hr/>
-            </div>
-              `;
-  });
-
-  const booklist = document.querySelector('.book-display');
-  booklist.innerHTML = books;
-}
-
-function addToList(title, author) {
-  bookListObj = getData('bookList');
-
+  let dummy = new Books();
+  bookListObj = dummy.getData('bookList');
+  
   if (bookListObj !== null && bookListObj.length > 0) {
     const lastObject = bookListObj[bookListObj.length - 1];
     bookid = lastObject.bookid + 1;
@@ -47,36 +79,19 @@ function addToList(title, author) {
     bookid = 1;
     bookListObj = [];
   }
+  
+  let obj1 = new Books(bookid, title, author);
+  console.log(obj1);
 
-  bookObj = { title, author, bookid };
-  bookListObj.push(bookObj);
+  obj1.addToList(obj1);
 
-  saveData(bookListObj);
-  getBookList();
-}
-
-function removeFromList(e) {
-  const currentDiv = e.target.parentElement;
-  currentDiv.parentElement.removeChild(currentDiv);
-
-  const bookId = parseInt(currentDiv.dataset.id, 10);
-  const bookList = getData('bookList');
-  const temp = bookList.filter((item) => item.bookid !== bookId);
-
-  saveData(temp);
-  getBookList();
-}
-
-btnSubmit.addEventListener('click', () => {
-  title = document.querySelector('.form-title').value;
-  author = document.querySelector('.form-author').value;
-  addToList(title, author);
   document.querySelector('.form-title').value = '';
   document.querySelector('.form-author').value = '';
 });
 
 const bookDisplay = document.querySelector('.book-display');
 
+// Remove Data Event Handler
 bookDisplay.addEventListener(
   'click',
   (e) => {
@@ -87,7 +102,10 @@ bookDisplay.addEventListener(
   true,
 );
 
+
+// Load Data Initially if there is any
 const key = localStorage.getItem('bookList');
 if (key) {
-  getBookList();
+  let getbooklists = new Books();
+  getbooklists.getBookList();
 }
