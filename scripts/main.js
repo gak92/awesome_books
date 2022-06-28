@@ -13,6 +13,15 @@ let bookListObj = [];
 let serializedBookList;
 let deserializedBookList;
 
+function saveData(dataObj) {
+    const dataString = JSON.stringify(dataObj);
+    localStorage.setItem('bookList', dataString);
+}
+  
+function getData(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
 function appendDiv(book) {
   deserializedBookObj = JSON.parse(localStorage.getItem("bookData"));
 
@@ -46,13 +55,14 @@ function addToList(title, author, bookid){
   }
   
   bookListObj.push(bookObj);
-  console.log(bookListObj.values);
+  console.log(bookListObj);
   
   serializedBookObj = JSON.stringify(bookObj);
-  localStorage.setItem("bookData", serializedBookObj);
+//   localStorage.setItem("bookData", serializedBookObj);
 
-  serializedBookList = JSON.stringify(bookListObj);
-  localStorage.setItem("bookList", serializedBookList);
+//   serializedBookList = JSON.stringify(bookListObj);
+//   localStorage.setItem("bookList", serializedBookList);
+saveData(bookListObj);
   
   appendDiv(serializedBookObj);
 }
@@ -73,7 +83,21 @@ function removeFromList(e) {
   currentDiv.parentElement.removeChild(currentDiv);
   
   console.log(e.target.parentElement);
-  console.log(currentDiv);
+//   console.log(currentDiv);
+
+//   console.log(currentDiv.dataset.id);
+  const bookId = currentDiv.dataset.id;
+
+//   let bookList = JSON.parse(localStorage.getItem('bookList'));
+//   console.log('Before Removing', bookList);
+
+
+//         let temp = bookList.filter(item => item.bookid != bookId);  
+//         localStorage.setItem("bookList", JSON.stringify(temp));
+    
+//     // localStorage.setItem('bookList', JSON.stringify(bookList));
+
+//     console.log('After Removing', temp);
 }
 
 function getBookList(){
