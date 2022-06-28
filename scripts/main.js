@@ -5,10 +5,6 @@ let bookObj;
 let bookid = 0;
 let author = ' ';
 let title = ' ';
-
-let serializedBookObj;
-let deserializedBookObj;
-
 let bookListObj = [];
 let deserializedBookList;
 
