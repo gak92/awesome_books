@@ -46,7 +46,7 @@ function getBookList() {
 
   const valuesArray = Object.values(deserializedBookList);
 
-  for (const value of valuesArray) {
+  valuesArray.forEach(value) {
     books += `
           <div class="book" data-id="${value.bookid}">
             <h2 class="title">${value.title}
@@ -68,7 +68,7 @@ function addToList(title, author) {
 
   bookid = lastObject.bookid + 1;
 
-  bookObj = { title, author, bookid, };
+  bookObj = { title, author, bookid };
 
   bookListObj.push(bookObj);
 
