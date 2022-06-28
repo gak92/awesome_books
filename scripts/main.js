@@ -88,6 +88,6 @@ bookDisplay.addEventListener(
 );
 
 const key = localStorage.getItem('bookList');
-if(key){
-    getBookList();
+if (key) {
+  getBookList();
 }
