@@ -22,7 +22,7 @@ function appendDiv(book) {
               <h2 class="title">${deserializedBookObj.title}
                   <span class="author">${deserializedBookObj.author}</span>
                </h2>
-              <button class="btn btn-remove">Remove</button>
+              <button class="btn btn-remove" type="button">Remove</button>
               <hr/>
             </div>
           `;
@@ -71,6 +71,9 @@ bookDisplay.addEventListener(
 function removeFromList(e) { 
   const currentDiv = e.target.parentElement;
   currentDiv.parentElement.removeChild(currentDiv);
+  
+  console.log(e.target.parentElement);
+  console.log(currentDiv);
 }
 
 function getBookList(){
@@ -80,30 +83,16 @@ function getBookList(){
   let valuesArray = Object.values(deserializedBookList);
   
   for (let value of valuesArray) {
-    //console.log(value);
     books += `
       <div class="book" data-id="${value.bookid}">
         <h2 class="title">${value.title}
           <span class="author">${value.author}</span>
         </h2>
-        <button class="btn btn-remove">Remove</button>
+        <button class="btn btn-remove" type="button">Remove</button>
         <hr/>
       </div>
         `;
   }
-
-  /*bookListObj.forEach((deserializedBookList)=>{
-  books += `
-      <div class="book" data-id="${deserializedBookList.bookid}">
-        <h2 class="title">${deserializedBookList.title}
-          <span class="author">${deserializedBookList.author}</span>
-        </h2>
-        <button class="btn btn-remove">Remove</button>
-        <hr/>
-      </div>
-        `;
-  });*/
-
   const booklist = document.querySelector('.book-display');
   booklist.innerHTML += books;
 }
