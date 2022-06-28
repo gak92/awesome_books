@@ -63,8 +63,8 @@ Deploy onto the web using GitHub Pages
 
 👤 **Ghazanfar Ali**
 
-- GitHub: Ghazanfar Ali [@gak92](https://github.com/gak92)
-- LinkedIn: Ghazanfar Ali (https://www.linkedin.com/in/ghazanfar-ali-9a4998a/)
+- GitHub: [@gak92](https://github.com/gak92)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ghazanfar-ali-9a4998a/)
 
 👤 **Asim Khan**
 
