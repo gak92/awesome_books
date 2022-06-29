@@ -37,6 +37,11 @@
   align-items: center;
 }
 
+.show-time {
+  align-self: flex-end; 
+  margin-top: 5px;
+}
+
 .header {
   margin-top: 40px;
 }

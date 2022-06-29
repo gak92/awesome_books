@@ -113,3 +113,8 @@ const anchorListItems = document.querySelector('.nav-list');
 anchorListItems.addEventListener('click', function(e) {
   UI.showSection(e.target.id);
 });
+
+// show time
+const showTime = document.querySelector('.show-time');
+const time = new Date();
+showTime.innerHTML = time;
