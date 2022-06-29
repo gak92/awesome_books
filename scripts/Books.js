@@ -6,7 +6,3 @@ export default class Books {
     this.author = author;
   }
 }
-
-// module.exports = Books;
-
-// export class Books {};

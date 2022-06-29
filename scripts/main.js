@@ -1,19 +1,4 @@
-// `import Books from 'Books'`;
-// import Books from './Books.js';
-// import Books from './Books.js';
-import * as Books from 'Books.js';
-
-const obj1 = new Books(11, 'book11', 'author11');
-console.log(obj1);
-
-
-// class Books {
-//   constructor(bookid, title, author) {
-//     this.bookid = bookid;
-//     this.title = title;
-//     this.author = author;
-//   }
-// }
+import Books from './Books.js';
 
 const btnSubmit = document.querySelector('.submit');
 let bookid = 0;
@@ -25,11 +10,11 @@ let deserializedBookList;
 class UI {
   saveData(dataObj) {
     const dataString = JSON.stringify(dataObj);
-    localStorage.setItem('bookList', dataString);
+    this.localStorage.setItem('bookList', dataString);
   }
     
   getData(key) {
-    return JSON.parse(localStorage.getItem(key));
+    return JSON.parse(this.localStorage.getItem(key));
   }
 
   getBookList() {
