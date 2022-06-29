@@ -12,7 +12,7 @@ class UI {
     const dataString = JSON.stringify(dataObj);
     this.localStorage.setItem('bookList', dataString);
   }
-    
+
   getData(key) {
     return JSON.parse(this.localStorage.getItem(key));
   }
@@ -37,7 +37,7 @@ class UI {
   }
 
   addToList(bookObj) {
-    bookListObj.push(bookObj);  
+    bookListObj.push(bookObj);
     this.saveData(bookListObj);
     this.getBookList();
   }
