@@ -52,7 +52,6 @@ btnSubmit.addEventListener('click', () => {
   title = document.querySelector('.form-title').value;
   author = document.querySelector('.form-author').value;
 
-  // const getUI = new UI();
   bookListObj = BookStorage.getData('bookList');
 
   if (bookListObj !== null && bookListObj.length > 0) {
@@ -77,7 +76,6 @@ bookDisplay.addEventListener(
   'click',
   (e) => {
     if (e.target.tagName === 'BUTTON') {
-      // const removeBookUI = new UI();
       UI.removeFromList(e);
     }
   },
@@ -87,6 +85,5 @@ bookDisplay.addEventListener(
 // Load Data Initially if there is any
 const key = localStorage.getItem('bookList');
 if (key) {
-  // const getbookUI = new UI();
   UI.getBookList();
 }
