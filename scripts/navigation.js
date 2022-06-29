@@ -1,6 +1,3 @@
-const display = document.getElementById('#list');
-const add = document.getElementById('#addnew');
-const contact = document.getElementById('#contact');
 const navList = document.querySelector('.nav-list');
 
 function hideAllSections() {
@@ -18,7 +15,7 @@ function showSection(section) {
   s.classList.remove('hidden');
 }
 
-navList.addEventListener('click', function(e) {
+navList.addEventListener('click', (e) => {
   if (e.target.id === 'list') {
     showSection('.book-display');
   } else if (e.target.id === 'addnew') {
