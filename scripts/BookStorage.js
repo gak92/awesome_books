@@ -1,4 +1,8 @@
 export default class BookStorage {
+  constructor(){
+
+  }
+  
   saveData(dataObj) {
     const dataString = JSON.stringify(dataObj);
     localStorage.setItem('bookList', dataString);
