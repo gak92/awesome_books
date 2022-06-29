@@ -5,6 +5,7 @@ import BookStorage from './BookStorage.js';
 const contactSection = document.querySelector('.contact');
 const addBooksSection = document.querySelector('.add-books');
 const anchorListItems = document.querySelector('.nav-list');
+const bookDisplay = document.querySelector('.book-display');
 const btnSubmit = document.querySelector('.submit');
 let bookid = 0;
 let author = ' ';
@@ -88,8 +89,6 @@ btnSubmit.addEventListener('click', () => {
   document.querySelector('.form-title').value = '';
   document.querySelector('.form-author').value = '';
 });
-
-const bookDisplay = document.querySelector('.book-display');
 
 // Remove Data Event Handler
 bookDisplay.addEventListener(
