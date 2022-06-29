@@ -1,21 +1,26 @@
+// `import Books from 'Books'`;
+// import Books from './Books.js';
+// import Books from './Books.js';
+import * as Books from 'Books.js';
+
+const obj1 = new Books(11, 'book11', 'author11');
+console.log(obj1);
+
+
+// class Books {
+//   constructor(bookid, title, author) {
+//     this.bookid = bookid;
+//     this.title = title;
+//     this.author = author;
+//   }
+// }
+
 const btnSubmit = document.querySelector('.submit');
-
-let bookObj;
-
 let bookid = 0;
 let author = ' ';
 let title = ' ';
 let bookListObj = [];
 let deserializedBookList;
-
-// Create class
-class Books {
-    constructor(bookid, title, author) {
-        this.bookid = bookid;
-        this.title = title;
-        this.author = author;
-    }  
-}
 
 class UI {
   saveData(dataObj) {
@@ -26,11 +31,11 @@ class UI {
   getData(key) {
     return JSON.parse(localStorage.getItem(key));
   }
-  
+
   getBookList() {
     let books = ' ';
     deserializedBookList = this.getData('bookList');
-  
+
     deserializedBookList.forEach((value) => {
       books += `
               <div class="book" data-id="${value.bookid}">
@@ -41,7 +46,7 @@ class UI {
               </div>
                 `;
     });
-  
+
     const booklist = document.querySelector('.book-display');
     booklist.innerHTML = books;
   }
@@ -55,11 +60,11 @@ class UI {
   removeFromList(e) {
     const currentDiv = e.target.parentElement;
     currentDiv.parentElement.removeChild(currentDiv);
-  
+
     const bookId = parseInt(currentDiv.dataset.id, 10);
     const bookList = this.getData('bookList');
     const temp = bookList.filter((item) => item.bookid !== bookId);
-  
+
     this.saveData(temp);
     this.getBookList();
   }
@@ -70,9 +75,9 @@ btnSubmit.addEventListener('click', () => {
   title = document.querySelector('.form-title').value;
   author = document.querySelector('.form-author').value;
 
-  let getUI = new UI();
+  const getUI = new UI();
   bookListObj = getUI.getData('bookList');
-  
+
   if (bookListObj !== null && bookListObj.length > 0) {
     const lastObject = bookListObj[bookListObj.length - 1];
     bookid = lastObject.bookid + 1;
@@ -80,10 +85,8 @@ btnSubmit.addEventListener('click', () => {
     bookid = 1;
     bookListObj = [];
   }
-  
-  let addBook = new Books(bookid, title, author);
-  console.log(addBook);
 
+  const addBook = new Books(bookid, title, author);
   getUI.addToList(addBook);
 
   document.querySelector('.form-title').value = '';
@@ -97,7 +100,7 @@ bookDisplay.addEventListener(
   'click',
   (e) => {
     if (e.target.tagName === 'BUTTON') {
-      let removeBookUI = new UI();
+      const removeBookUI = new UI();
       removeBookUI.removeFromList(e);
     }
   },
@@ -107,6 +110,6 @@ bookDisplay.addEventListener(
 // Load Data Initially if there is any
 const key = localStorage.getItem('bookList');
 if (key) {
-  let getbookUI = new UI();
+  const getbookUI = new UI();
   getbookUI.getBookList();
 }
