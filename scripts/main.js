@@ -9,8 +9,7 @@ let bookListObj = [];
 let deserializedBookList;
 
 class UI {
-  getBookList() {
-    // const storage = new BookStorage();
+  static getBookList() {
     let books = ' ';
     deserializedBookList = BookStorage.getData('bookList');
 
@@ -30,14 +29,12 @@ class UI {
   }
 
   addToList(bookObj) {
-    // const storage = new BookStorage();
     bookListObj.push(bookObj);
     BookStorage.saveData(bookListObj);
-    this.getBookList();
+    UI.getBookList();
   }
 
   removeFromList(e) {
-    // const storage = new BookStorage();
     const currentDiv = e.target.parentElement;
     currentDiv.parentElement.removeChild(currentDiv);
 
@@ -46,7 +43,7 @@ class UI {
     const temp = bookList.filter((item) => item.bookid !== bookId);
 
     BookStorage.saveData(temp);
-    this.getBookList();
+    UI.getBookList();
   }
 }
 
@@ -56,7 +53,6 @@ btnSubmit.addEventListener('click', () => {
   author = document.querySelector('.form-author').value;
 
   const getUI = new UI();
-  // const storage = new BookStorage();
   bookListObj = BookStorage.getData('bookList');
 
   if (bookListObj !== null && bookListObj.length > 0) {
@@ -91,6 +87,6 @@ bookDisplay.addEventListener(
 // Load Data Initially if there is any
 const key = localStorage.getItem('bookList');
 if (key) {
-  const getbookUI = new UI();
-  getbookUI.getBookList();
+  // const getbookUI = new UI();
+  UI.getBookList();
 }
