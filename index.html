@@ -9,18 +9,22 @@
     <title>Awesome Books</title>
   </head>
   <body>
-    <header>
-      <h1>Awesome Books</h1>
-    </header>
-    <section class="book-display"></section>
+    <div class="container">
+      <header class="header">
+        <h1>All Awesome Books</h1>
+      </header>
+      <section class="book-display"></section>
 
-    <section class="add-books">
-      <form class="form" method="post">
-        <input type="text" placeholder="Title" class="form-title" />
-        <input type="text" placeholder="Author" class="form-author" />
-        <button class="submit" type="button">Add</button>
-      </form>
-    </section>
+      <hr class="hr-line" />
 
+      <section class="add-books">
+        <form class="form" method="post">
+          <h2>Add New Book</h2>
+          <input type="text" placeholder="Title" class="form-title" />
+          <input type="text" placeholder="Author" class="form-author" />
+          <button class="btn submit" type="button">Add</button>
+        </form>
+      </section>
+    </div>
   </body>
 </html>

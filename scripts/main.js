@@ -38,7 +38,6 @@ class UI {
                   <span class="author">${value.author}</span>
                 </h2>
                 <button class="btn btn-remove" type="button">Remove</button>
-                <hr/>
               </div>
                 `;
     });
@@ -71,9 +70,6 @@ btnSubmit.addEventListener('click', () => {
   title = document.querySelector('.form-title').value;
   author = document.querySelector('.form-author').value;
 
-  /*let dummy = new Books();
-  bookListObj = dummy.getData('bookList');*/
-
   let getUI = new UI();
   bookListObj = getUI.getData('bookList');
   
@@ -88,7 +84,6 @@ btnSubmit.addEventListener('click', () => {
   let addBook = new Books(bookid, title, author);
   console.log(addBook);
 
-  //obj1.addToList(obj1);
   getUI.addToList(addBook);
 
   document.querySelector('.form-title').value = '';
@@ -108,7 +103,6 @@ bookDisplay.addEventListener(
   },
   true,
 );
-
 
 // Load Data Initially if there is any
 const key = localStorage.getItem('bookList');
