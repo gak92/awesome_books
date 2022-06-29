@@ -1,6 +1,11 @@
 import Books from './Books.js';
 import BookStorage from './BookStorage.js';
 
+// Navigation and Section
+const contactSection = document.querySelector('.contact');
+const addBooksSection = document.querySelector('.add-books');
+const anchorListItems = document.querySelector('.nav-list');
+const bookDisplay = document.querySelector('.book-display');
 const btnSubmit = document.querySelector('.submit');
 let bookid = 0;
 let author = ' ';
@@ -46,16 +51,16 @@ class UI {
     UI.getBookList();
   }
 
-  static showSection(id){
-    if (id == 'list') {
+  static showSection(id) {
+    if (id === 'list') {
       bookDisplay.classList.remove('hidden');
       addBooksSection.classList.add('hidden');
       contactSection.classList.add('hidden');
-    } else if (id == 'addnew') {
+    } else if (id === 'addnew') {
       bookDisplay.classList.add('hidden');
       addBooksSection.classList.remove('hidden');
       contactSection.classList.add('hidden');
-    } else if (id == 'contact') {
+    } else if (id === 'contact') {
       bookDisplay.classList.add('hidden');
       addBooksSection.classList.add('hidden');
       contactSection.classList.remove('hidden');
@@ -85,8 +90,6 @@ btnSubmit.addEventListener('click', () => {
   document.querySelector('.form-author').value = '';
 });
 
-const bookDisplay = document.querySelector('.book-display');
-
 // Remove Data Event Handler
 bookDisplay.addEventListener(
   'click',
@@ -104,13 +107,8 @@ if (key) {
   UI.getBookList();
 }
 
-// Navigation and Section
-const contactSection = document.querySelector('.contact');
-const addBooksSection = document.querySelector('.add-books');
-const anchorListItems = document.querySelector('.nav-list');
-
 // add Event Listener to navigation links
-anchorListItems.addEventListener('click', function(e) {
+anchorListItems.addEventListener('click', (e) => {
   UI.showSection(e.target.id);
 });
 
