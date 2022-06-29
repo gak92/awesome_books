@@ -28,13 +28,13 @@ class UI {
     booklist.innerHTML = books;
   }
 
-  addToList(bookObj) {
+  static addToList(bookObj) {
     bookListObj.push(bookObj);
     BookStorage.saveData(bookListObj);
     UI.getBookList();
   }
 
-  removeFromList(e) {
+  static removeFromList(e) {
     const currentDiv = e.target.parentElement;
     currentDiv.parentElement.removeChild(currentDiv);
 
@@ -52,7 +52,7 @@ btnSubmit.addEventListener('click', () => {
   title = document.querySelector('.form-title').value;
   author = document.querySelector('.form-author').value;
 
-  const getUI = new UI();
+  // const getUI = new UI();
   bookListObj = BookStorage.getData('bookList');
 
   if (bookListObj !== null && bookListObj.length > 0) {
@@ -64,7 +64,7 @@ btnSubmit.addEventListener('click', () => {
   }
 
   const addBook = new Books(bookid, title, author);
-  getUI.addToList(addBook);
+  UI.addToList(addBook);
 
   document.querySelector('.form-title').value = '';
   document.querySelector('.form-author').value = '';
@@ -77,8 +77,8 @@ bookDisplay.addEventListener(
   'click',
   (e) => {
     if (e.target.tagName === 'BUTTON') {
-      const removeBookUI = new UI();
-      removeBookUI.removeFromList(e);
+      // const removeBookUI = new UI();
+      UI.removeFromList(e);
     }
   },
   true,
