@@ -1,4 +1,5 @@
 import Books from './Books.js';
+import BookStorage from './BookStorage.js';
 
 const btnSubmit = document.querySelector('.submit');
 let bookid = 0;
@@ -6,17 +7,6 @@ let author = ' ';
 let title = ' ';
 let bookListObj = [];
 let deserializedBookList;
-
-class BookStorage {
-  saveData(dataObj) {
-    const dataString = JSON.stringify(dataObj);
-    localStorage.setItem('bookList', dataString);
-  }
-
-  getData(key) {
-    return JSON.parse(localStorage.getItem(key));
-  }
-}
 
 class UI {
   getBookList() {
