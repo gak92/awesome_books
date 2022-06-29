@@ -108,10 +108,16 @@
 }
 
 .footer {
-  width: 100%;
+  max-width: 900px;
+  width: 90%;
   border: 1px solid #000;
   display: flex;
   justify-content: flex-start;
   padding: 8px 5px;
-  margin-top: 50px;
+  position: fixed;
+  bottom: 0;
+}
+
+.hidden {
+  display: none;
 }

@@ -45,6 +45,22 @@ class UI {
     BookStorage.saveData(temp);
     UI.getBookList();
   }
+
+  static showSection(id){
+    if (id == 'list') {
+      bookDisplay.classList.remove('hidden');
+      addBooksSection.classList.add('hidden');
+      contactSection.classList.add('hidden');
+    } else if (id == 'addnew') {
+      bookDisplay.classList.add('hidden');
+      addBooksSection.classList.remove('hidden');
+      contactSection.classList.add('hidden');
+    } else if (id == 'contact') {
+      bookDisplay.classList.add('hidden');
+      addBooksSection.classList.add('hidden');
+      contactSection.classList.remove('hidden');
+    }
+  }
 }
 
 // Submit Data Event Handler
@@ -87,3 +103,13 @@ const key = localStorage.getItem('bookList');
 if (key) {
   UI.getBookList();
 }
+
+// Navigation and Section
+const contactSection = document.querySelector('.contact');
+const addBooksSection = document.querySelector('.add-books');
+const anchorListItems = document.querySelector('.nav-list');
+
+// add Event Listener to navigation links
+anchorListItems.addEventListener('click', function(e) {
+  UI.showSection(e.target.id);
+});
