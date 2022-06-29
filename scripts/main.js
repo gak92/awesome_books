@@ -9,7 +9,7 @@ let bookListObj = [];
 let deserializedBookList;
 
 class UI {
-  getBookList(this) {
+  getBookList() {
     const storage = new BookStorage();
     let books = ' ';
     deserializedBookList = storage.getData('bookList');
