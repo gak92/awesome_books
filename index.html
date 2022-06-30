@@ -10,6 +10,15 @@
   </head>
   <body>
     <div class="container">
+      <nav class="navbar">
+        <h1>Awesome Books</h1>
+        <ul class="nav-list">
+          <li class="nav-list-item"><a href="#" id="list">List</a></li>
+          <li class="nav-list-item"><a href="#" id="addnew">Add New</a></li>
+          <li class="nav-list-item"><a href="#" id="contact">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="show-time">time</p>
       <header class="header">
         <h1>All Awesome Books</h1>
       </header>
@@ -17,7 +26,7 @@
 
       <hr class="hr-line" />
 
-      <section class="add-books">
+      <section class="add-books hidden">
         <form class="form" method="post">
           <h2>Add New Book</h2>
           <input type="text" placeholder="Title" class="form-title" />
@@ -25,6 +34,21 @@
           <button class="btn submit" type="button">Add</button>
         </form>
       </section>
+
+      <section class="contact hidden">
+        <h1>Cotact information</h1>
+        <p>Do you have any question or you just want to say "Hello"? <br>You can reach out to us</p>
+        <ul>
+          <li>Our email info@booklist.com</li>
+          <li>Our Phone Number 0043586534422</li>
+          <li>Our address Moor Road 22, 84520, Lisbon, Portugal</li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <h2>Copyright</h2>
+      </footer>
     </div>
+    <script src="scripts/navigation.js"></script>
   </body>
 </html>

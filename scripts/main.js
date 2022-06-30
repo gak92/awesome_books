@@ -1,6 +1,11 @@
 import Books from './Books.js';
 import BookStorage from './BookStorage.js';
 
+// Navigation and Section
+const contactSection = document.querySelector('.contact');
+const addBooksSection = document.querySelector('.add-books');
+const anchorListItems = document.querySelector('.nav-list');
+const bookDisplay = document.querySelector('.book-display');
 const btnSubmit = document.querySelector('.submit');
 let bookid = 0;
 let author = ' ';
@@ -45,6 +50,22 @@ class UI {
     BookStorage.saveData(temp);
     UI.getBookList();
   }
+
+  static showSection(id) {
+    if (id === 'list') {
+      bookDisplay.classList.remove('hidden');
+      addBooksSection.classList.add('hidden');
+      contactSection.classList.add('hidden');
+    } else if (id === 'addnew') {
+      bookDisplay.classList.add('hidden');
+      addBooksSection.classList.remove('hidden');
+      contactSection.classList.add('hidden');
+    } else if (id === 'contact') {
+      bookDisplay.classList.add('hidden');
+      addBooksSection.classList.add('hidden');
+      contactSection.classList.remove('hidden');
+    }
+  }
 }
 
 // Submit Data Event Handler
@@ -52,7 +73,6 @@ btnSubmit.addEventListener('click', () => {
   title = document.querySelector('.form-title').value;
   author = document.querySelector('.form-author').value;
 
-  // const getUI = new UI();
   bookListObj = BookStorage.getData('bookList');
 
   if (bookListObj !== null && bookListObj.length > 0) {
@@ -70,14 +90,11 @@ btnSubmit.addEventListener('click', () => {
   document.querySelector('.form-author').value = '';
 });
 
-const bookDisplay = document.querySelector('.book-display');
-
 // Remove Data Event Handler
 bookDisplay.addEventListener(
   'click',
   (e) => {
     if (e.target.tagName === 'BUTTON') {
-      // const removeBookUI = new UI();
       UI.removeFromList(e);
     }
   },
@@ -87,6 +104,15 @@ bookDisplay.addEventListener(
 // Load Data Initially if there is any
 const key = localStorage.getItem('bookList');
 if (key) {
-  // const getbookUI = new UI();
   UI.getBookList();
 }
+
+// add Event Listener to navigation links
+anchorListItems.addEventListener('click', (e) => {
+  UI.showSection(e.target.id);
+});
+
+// show time
+const showTime = document.querySelector('.show-time');
+const time = new Date();
+showTime.innerHTML = time;
